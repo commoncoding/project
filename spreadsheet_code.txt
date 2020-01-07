@@ -2,7 +2,7 @@ function doGet(e) {
   Logger.log( JSON.stringify(e) );  
   
   if (e.parameter != 'undefined') {
-    var sheet_id = ' '; 	
+    var sheet_id = ''; 	
     var sheet = SpreadsheetApp.openById(sheet_id).getActiveSheet();	
     var newRow = sheet.getLastRow() + 1;						
     var rowData = [];
@@ -12,7 +12,7 @@ function doGet(e) {
       var value = stripQuotes(e.parameter[param]);
       Logger.log(param + ':' + e.parameter[param]);
       switch (param) {
-        case 'CDS':
+        case '':
           rowData[1] = value;
       }
     }
