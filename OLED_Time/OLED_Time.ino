@@ -37,10 +37,10 @@ void draw(void) {
   thisTime="";
   
   u8g.setFont(u8g_font_9x18B);
-  if (now.hour() < 10){ thisTime="0"+ thisTime;} // add leading zero if required
+  if (now.hour() < 10){ thisTime="0"+ thisTime;} 
   thisTime=thisTime + String(now.hour()) + ":";
-  if (now.minute() < 10){ thisTime=thisTime + "0";} // add leading zero if required
-  thisTime=thisTime + String(now.minute()); // + ":";
+  if (now.minute() < 10){ thisTime=thisTime + "0";} 
+  thisTime=thisTime + String(now.minute()); 
 
   const char* newTime = (const char*) thisTime.c_str();
   u8g.drawStr(5,25, newTime); 
