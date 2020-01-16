@@ -35,9 +35,9 @@ void setup()
 
 void loop() 
 {
-  int CDS = analogRead(A0);
+  int Cds = analogRead(A0);
   
-  sendData(CDS);
+  sendData(Cds);
 }
 
 void sendData(int cds)
@@ -54,7 +54,7 @@ void sendData(int cds)
   } else {
   Serial.println("certificate doesn't match");
   } 
-  String url = "/macros/s/" + GAS_ID + "/exec?CDS=" + cds;
+  String url = "/macros/s/" + GAS_ID + "/exec?Cds=" + cds;
   Serial.print("requesting URL: ");
   Serial.println(url);
 
