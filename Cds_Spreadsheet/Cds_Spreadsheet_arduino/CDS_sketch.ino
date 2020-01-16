@@ -9,7 +9,7 @@ const int httpsPort = 443;
 WiFiClientSecure client;
 
 const char* fingerprint = "46 B2 C3 44 9C 59 09 8B 01 B6 F8 BD 4C FB 00 74 91 2F EF F6";
-String GAS_ID = "AKfycbxqUGFUjVfQjUEvUNgtTocXtUMUOPS50o3zGv4kZX5HjEt0VRa3";     //spreadsheet id
+String GAS_ID = "";     //webapp id
 
 void setup() 
 {
@@ -53,8 +53,7 @@ void sendData(int cds)
   Serial.println("certificate matches");
   } else {
   Serial.println("certificate doesn't match");
-  }
-  //String string_temperature =  String(tem, DEC); 
+  } 
   String url = "/macros/s/" + GAS_ID + "/exec?CDS=" + cds;
   Serial.print("requesting URL: ");
   Serial.println(url);
