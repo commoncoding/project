@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 
-const char* ssid = "commoncoding";    //your wifi network
-const char* password = "coding0317";     //yout wifi pasword
+const char* ssid = "";    //your wifi network
+const char* password = "";     //yout wifi pasword
 const char* host = "script.google.com";
 const int httpsPort = 443;
 
