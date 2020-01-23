@@ -35,7 +35,7 @@ void setup()
 
 void loop() 
 {
-  int ground = digitalRead(D3);
+  int ground = analogRead(A0);
   sendData(ground);
  
 }
