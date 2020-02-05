@@ -5,7 +5,7 @@ function doGet(e) {
     result = 'No Parameters';
   }
   else {
-    var sheet_id = '151q6N4NJcWArsmAEwng3ZwGafVpwQy6jpBZ1KELtKE8'; 	// Spreadsheet ID
+    var sheet_id = ''; 	// Spreadsheet ID
     var sheet = SpreadsheetApp.openById(sheet_id).getActiveSheet();
     var newRow = sheet.getLastRow() + 1;						
     var rowData = [];
