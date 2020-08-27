@@ -1,0 +1,97 @@
+function doPost(e){
+  Logger.log( JSON.stringify(e) );
+
+  var sheet_id = e.parameter['id'];
+
+  try {
+      sheet_id = sheet_id.replace('https://docs.google.com/spreadsheets/d/','');
+      if(sheet_id.indexOf('/') !== -1){
+        sheet_id = sheet_id.substring(0,sheet_id.indexOf('/'));
+      }
+  }
+  catch (e) {
+     
+  }
+
+  var result = 'Ok';
+  if(e.parameter['method']=='set') {
+    var row = e.parameter['row'];
+
+    var column = e.parameter['column'];
+    
+    var value = e.parameter['value'];
+    var sheet_id = e.parameter['id'];
+    writeValue(sheet_id,row,column,value);
+    
+    
+  } else if(e.parameter['method']=='get') {
+    var row = e.parameter['row'];
+    var column = e.parameter['column'];
+    var data = {};
+    
+    var sheet_id = e.parameter['id'];
+    data.records = _readData(sheet_id,row,column);
+    
+    return response().json(data);
+  }
+  
+  return ContentService.createTextOutput(result);
+}
+
+function doGet(e) { 
+
+  Logger.log( JSON.stringify(e) );
+
+  var result = 'Ok';
+
+
+  if(e.parameter['method']=='set') {
+    var row = e.parameter['row'];
+
+    var column = e.parameter['column'];
+    
+    var value = e.parameter['value'];
+    var sheet_id = e.parameter['id'];
+
+    writeValue(sheet_id,row,column,value);
+    
+    
+  } else if(e.parameter['method']=='get') {
+    var row = e.parameter['row'];
+    var column = e.parameter['column'];
+    var data = {};
+    var sheet_id = e.parameter['id'];
+    data.records = _readData(sheet_id,row,column);
+    
+    return response().json(data);
+  }
+  
+  return ContentService.createTextOutput(result);
+}
+function writeValue(sheet_id,row,column,value){
+    var sheet = SpreadsheetApp.openById(sheet_id).getActiveSheet();
+    var range = sheet.getRange(row, column,1,1);
+    range.setValue(value);
+}
+function _readData(sheet_id,row,column){
+    var sheet = SpreadsheetApp.openById(sheet_id).getActiveSheet();
+    var range = sheet.getRange(row, column,1,1);
+  var rows = range.getValue();
+  
+    return rows;
+}
+
+function stripQuotes( value ) {
+
+  return value.replace(/^["']|['"]$/g, "");
+
+}
+function response() {
+   return {
+      json: function(data) {
+         return ContentService
+            .createTextOutput(JSON.stringify(data))
+            .setMimeType(ContentService.MimeType.JSON);
+      }
+   }
+}
